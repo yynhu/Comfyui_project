@@ -30,7 +30,7 @@
   "2": {
     "inputs": {
       "pixels": [
-        "28",
+        "49",
         0
       ],
       "vae": [
@@ -78,12 +78,12 @@
   "6": {
     "inputs": {
       "width": [
-        "28",
-        3
+        "38",
+        0
       ],
       "height": [
-        "28",
-        4
+        "38",
+        1
       ],
       "batch_size": 1
     },
@@ -94,7 +94,7 @@
   },
   "7": {
     "inputs": {
-      "noise_seed": 654968361505320
+      "noise_seed": 228270472885088
     },
     "class_type": "RandomNoise",
     "_meta": {
@@ -129,7 +129,7 @@
   "10": {
     "inputs": {
       "text": [
-        "24",
+        "36",
         0
       ],
       "speak_and_recognation": {
@@ -174,7 +174,7 @@
   },
   "14": {
     "inputs": {
-      "image": "模特图 (785).jpg"
+      "image": "screenshot_2025-07-08_15-52-50_00001_.png"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -213,14 +213,14 @@
   "17": {
     "inputs": {
       "max_shift": 0.010000000000000002,
-      "base_shift": 0.5,
+      "base_shift": 0.5000000000000001,
       "width": [
-        "28",
-        3
+        "38",
+        0
       ],
       "height": [
-        "28",
-        4
+        "38",
+        1
       ],
       "model": [
         "18",
@@ -235,7 +235,7 @@
   "18": {
     "inputs": {
       "lora_name": "Turbo\\FLUX.1-Turbo-Alpha.safetensors",
-      "lora_strength": 1,
+      "lora_strength": 1.0000000000000002,
       "model": [
         "19",
         0
@@ -282,69 +282,9 @@
       "title": "双CLIP加载器"
     }
   },
-  "23": {
-    "inputs": {
-      "from_translate": "auto",
-      "to_translate": "english",
-      "add_proxies": false,
-      "proxies": "",
-      "auth_data": "",
-      "service": "GoogleTranslator",
-      "text": [
-        "29",
-        0
-      ],
-      "Show proxy": "proxy_hide",
-      "Show authorization": "authorization_hide",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
-    },
-    "class_type": "DeepTranslatorTextNode",
-    "_meta": {
-      "title": "深度翻译文本节点"
-    }
-  },
-  "24": {
-    "inputs": {
-      "text": "Only change the color of the shorts to gray, and the rest remain the same",
-      "anything": [
-        "23",
-        0
-      ]
-    },
-    "class_type": "easy showAnything",
-    "_meta": {
-      "title": "展示任何"
-    }
-  },
-  "28": {
-    "inputs": {
-      "aspect_ratio": "original",
-      "proportional_width": 1,
-      "proportional_height": 1,
-      "fit": "letterbox",
-      "method": "lanczos",
-      "round_to_multiple": "None",
-      "scale_to_side": "longest",
-      "scale_to_length": 1024,
-      "background_color": "#000000",
-      "image": [
-        "16",
-        0
-      ]
-    },
-    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
-    "_meta": {
-      "title": "图层工具：按宽高比缩放 V2"
-    }
-  },
   "29": {
     "inputs": {
-      "text": "只将短裤颜色改为灰色，其他都保持不变",
+      "text": "改变图片的背景为有山有水有溪流的户外绿色草坪背景，主体女孩的姿势、穿着等保持不变",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -359,7 +299,7 @@
   },
   "33": {
     "inputs": {
-      "file_path": "",
+      "file_path": "\\\\172.16.1.5\\全员共享\\ai\\2-图片编辑工作流\\保持图片风格做局部修改-2\\处理结果\\444.png",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -367,13 +307,258 @@
         ]
       },
       "images": [
-        "4",
+        "52",
         0
       ]
     },
     "class_type": "SaveImageToLocal",
     "_meta": {
       "title": "保存图像到本地"
+    }
+  },
+  "35": {
+    "inputs": {
+      "Text_A": [
+        "29",
+        0
+      ],
+      "Text_B": "",
+      "Translate": true,
+      "From": "中文",
+      "To": "English",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "Tencent_Translater",
+    "_meta": {
+      "title": "𝙆 腾讯AI翻译"
+    }
+  },
+  "36": {
+    "inputs": {
+      "text": [
+        "35",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "37": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "39",
+        0
+      ],
+      "height": 0,
+      "crop": "disabled",
+      "image": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "缩放图像"
+    }
+  },
+  "38": {
+    "inputs": {
+      "image": [
+        "49",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "39": {
+    "inputs": {
+      "image": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "40": {
+    "inputs": {
+      "size": [
+        "41",
+        0
+      ],
+      "interpolation_mode": "bicubic",
+      "image": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "JWImageResizeByLongerSide",
+    "_meta": {
+      "title": "Image Resize by Longer Side"
+    }
+  },
+  "41": {
+    "inputs": {
+      "value": 1536
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "42": {
+    "inputs": {
+      "image": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "GetImageSizeAndCount",
+    "_meta": {
+      "title": "获取图像尺寸数量"
+    }
+  },
+  "43": {
+    "inputs": {
+      "comparison": "a > b",
+      "a": [
+        "44",
+        0
+      ],
+      "b": [
+        "41",
+        0
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "44": {
+    "inputs": {
+      "image": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "easy imageSizeByLongerSide",
+    "_meta": {
+      "title": "图像尺寸（长边）"
+    }
+  },
+  "45": {
+    "inputs": {
+      "boolean": [
+        "43",
+        0
+      ],
+      "on_true": [
+        "40",
+        0
+      ],
+      "on_false": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "47": {
+    "inputs": {
+      "comparison": "a < b",
+      "a": [
+        "44",
+        0
+      ],
+      "b": [
+        "48",
+        0
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "48": {
+    "inputs": {
+      "value": 768
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "49": {
+    "inputs": {
+      "boolean": [
+        "47",
+        0
+      ],
+      "on_true": [
+        "51",
+        0
+      ],
+      "on_false": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "51": {
+    "inputs": {
+      "size": [
+        "48",
+        0
+      ],
+      "interpolation_mode": "bicubic",
+      "image": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "JWImageResizeByLongerSide",
+    "_meta": {
+      "title": "Image Resize by Longer Side"
+    }
+  },
+  "52": {
+    "inputs": {
+      "temperature": 2,
+      "hue": 1,
+      "brightness": 2,
+      "contrast": 0,
+      "saturation": 10,
+      "gamma": 1,
+      "image": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "ColorCorrect",
+    "_meta": {
+      "title": "颜色校正"
     }
   }
 }

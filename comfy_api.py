@@ -15,7 +15,8 @@ from comfy_utils import (
     find_file_matching_pattern,
     generate_task,
     rename_folder,
-    get_desktop
+    get_desktop,
+    delete_file
 )
 
 
@@ -186,7 +187,9 @@ class ImageProcessingClient:
                         return
                     clip_text = os.path.join(task, "clip.txt")
                     if not os.path.exists(clip_text):
-                        logger.warning(f"未找clip文本: {clip_text}")
+                        open(f"{task}/【未找到clip文本】.txt", 'w').close()
+                        delete_file(task,"【已检测到该文件夹，请勿删除】.txt")
+                        logger.warning(f"未找到clip文本: {clip_text}")
                         return
                     word = open(clip_text, "r", encoding="utf-8").read()
                     output_path = os.path.join(task, "处理结果")
@@ -202,12 +205,15 @@ class ImageProcessingClient:
                             self.process_images(ws, prompt, task)
             case _:
                 logger.warning(f"未定义的工作流: {func_name}")
-        rename_folder(task, f"-已完成【{int(time.time()*1000)}】")
-        # rename_folder(task, f"-已完成")
+        # rename_folder(task, f"-已完成-{int(time.time()*1000)}")
+        open(f"{task}/【已完成】.txt", 'w').close()
+        delete_file(task, "【已检测到该文件夹，请勿删除】.txt")
+        rename_folder(task, "-已完成")
 
     def execute_tasks(self, folder):
         """任务执行主循环"""
         first_folder = tuple((confg["workflow"].keys()))
+        # first_folder = ("2",)
         while True:
             task_list = generate_task(folder, r"^(?!.*-已完成).+$",first_folder)
             if not task_list:

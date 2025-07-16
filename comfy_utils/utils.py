@@ -140,9 +140,10 @@ def generate_task(folder,pattern,first_folder=None):
         for current_pt in result_pt:
             if not os.path.exists(current_pt):
                 continue
-            dir_ = os.path.dirname(current_pt)
-            # # 检查标记
-            if os.path.exists(os.path.join(dir_, '【标记】.txt')):
+            if os.path.exists(os.path.join(current_pt, '【未找到clip文本】.txt')):
+                continue
+            # 检查【已完成】标记
+            if os.path.exists(os.path.join(current_pt, '【已完成】.txt')):
                 continue
             tasks.append(current_pt)
 
@@ -152,3 +153,15 @@ def generate_task(folder,pattern,first_folder=None):
     except Exception as e:
         logger.error(f"生成任务异常:{e}")
 
+# 删除文件的函数
+def delete_file(folder_path,file_name):
+    file_path = os.path.join(folder_path,file_name)
+    try:
+        os.remove(file_path)
+        logger.success(f"文件 {file_path} 已删除。")
+    except FileNotFoundError:
+        logger.error(f"文件 {file_path} 不存在。")
+    except PermissionError:
+        logger.error(f"权限不足，无法删除文件 {file_path}。")
+    except OSError as e:
+        logger.error(f"删除文件 {file_path} 时出错: {e}")
