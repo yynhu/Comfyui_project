@@ -1,0 +1,467 @@
+{
+  "131": {
+    "inputs": {
+      "image": "pasted/image (23).png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "152": {
+    "inputs": {
+      "unet_name": "shuttle-3-diffusion-fp8.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "154": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp16.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "155": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "310": {
+    "inputs": {
+      "model": [
+        "337",
+        0
+      ],
+      "conditioning": [
+        "320",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "基本引导器"
+    }
+  },
+  "311": {
+    "inputs": {
+      "model": [
+        "322",
+        0
+      ],
+      "conditioning": [
+        "319",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "基本引导器"
+    }
+  },
+  "312": {
+    "inputs": {
+      "noise": [
+        "316",
+        0
+      ],
+      "guider": [
+        "310",
+        0
+      ],
+      "sampler": [
+        "341",
+        0
+      ],
+      "sigmas": [
+        "335",
+        0
+      ],
+      "latent_image": [
+        "327",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "自定义采样器（高级）"
+    }
+  },
+  "313": {
+    "inputs": {},
+    "class_type": "DisableNoise",
+    "_meta": {
+      "title": "禁用噪波"
+    }
+  },
+  "316": {
+    "inputs": {},
+    "class_type": "DisableNoise",
+    "_meta": {
+      "title": "禁用噪波"
+    }
+  },
+  "319": {
+    "inputs": {
+      "guidance": 0,
+      "conditioning": [
+        "338",
+        0
+      ]
+    },
+    "class_type": "FluxDeGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "320": {
+    "inputs": {
+      "guidance": 30,
+      "conditioning": [
+        "340",
+        0
+      ]
+    },
+    "class_type": "FluxDeGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "321": {
+    "inputs": {
+      "sigmas": [
+        "329",
+        0
+      ]
+    },
+    "class_type": "FlipSigmas",
+    "_meta": {
+      "title": "翻转Sigma"
+    }
+  },
+  "322": {
+    "inputs": {
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": [
+        "474",
+        1
+      ],
+      "height": [
+        "474",
+        2
+      ],
+      "model": [
+        "477",
+        0
+      ]
+    },
+    "class_type": "InFluxModelSamplingPred",
+    "_meta": {
+      "title": "输入Flux逆向模型预测"
+    }
+  },
+  "325": {
+    "inputs": {
+      "pixels": [
+        "474",
+        0
+      ],
+      "vae": [
+        "155",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "327": {
+    "inputs": {
+      "noise": [
+        "313",
+        0
+      ],
+      "guider": [
+        "311",
+        0
+      ],
+      "sampler": [
+        "328",
+        0
+      ],
+      "sigmas": [
+        "321",
+        0
+      ],
+      "latent_image": [
+        "325",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "自定义采样器（高级）"
+    }
+  },
+  "328": {
+    "inputs": {
+      "gamma": 0.5000000000000001,
+      "seed": 534167767918415
+    },
+    "class_type": "FluxForwardODESampler",
+    "_meta": {
+      "title": "Flux正向ODE采样器"
+    }
+  },
+  "329": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 30,
+      "denoise": 1,
+      "model": [
+        "477",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "基本调度器"
+    }
+  },
+  "330": {
+    "inputs": {
+      "samples": [
+        "312",
+        0
+      ],
+      "vae": [
+        "155",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "335": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 30,
+      "denoise": 1,
+      "model": [
+        "337",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "基本调度器"
+    }
+  },
+  "337": {
+    "inputs": {
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": [
+        "474",
+        1
+      ],
+      "height": [
+        "474",
+        2
+      ],
+      "reverse_ode": true,
+      "model": [
+        "510",
+        0
+      ]
+    },
+    "class_type": "OutFluxModelSamplingPred",
+    "_meta": {
+      "title": "输出Flux模型采样预测"
+    }
+  },
+  "338": {
+    "inputs": {
+      "text": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "154",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "340": {
+    "inputs": {
+      "text": [
+        "509",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "154",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "341": {
+    "inputs": {
+      "eta": 0.9000000000000001,
+      "start_step": 0,
+      "end_step": 8,
+      "eta_trend": "linear_decrease",
+      "model": [
+        "337",
+        0
+      ],
+      "latent_image": [
+        "325",
+        0
+      ]
+    },
+    "class_type": "FluxReverseODESampler",
+    "_meta": {
+      "title": "Flux逆向ODE采样器"
+    }
+  },
+  "474": {
+    "inputs": {
+      "width": 1024,
+      "height": 0,
+      "interpolation": "lanczos",
+      "method": "keep proportion",
+      "condition": "always",
+      "multiple_of": 8,
+      "image": [
+        "131",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "476": {
+    "inputs": {
+      "model_type": "flux",
+      "rel_l1_thresh": 0,
+      "start_percent": 0,
+      "end_percent": 1,
+      "cache_device": "cuda",
+      "model": [
+        "152",
+        0
+      ]
+    },
+    "class_type": "TeaCache",
+    "_meta": {
+      "title": "TeaCache缓存加速"
+    }
+  },
+  "477": {
+    "inputs": {
+      "mode": "default",
+      "backend": "inductor",
+      "fullgraph": false,
+      "dynamic": false,
+      "model": [
+        "476",
+        0
+      ]
+    },
+    "class_type": "CompileModel",
+    "_meta": {
+      "title": "编译模型"
+    }
+  },
+  "509": {
+    "inputs": {
+      "model": "glm-4v-flash",
+      "max_tokens": 1024,
+      "temperature": 0.8,
+      "top_p": 0.6,
+      "instruct": "Describe the picture in detail",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "474",
+        0
+      ]
+    },
+    "class_type": "ChatGLM4InstructMediaNode",
+    "_meta": {
+      "title": "ChatGLM4多媒体指令节点"
+    }
+  },
+  "510": {
+    "inputs": {
+      "lora_name": "flux-lora-000001.safetensors",
+      "strength_model": 1,
+      "model": [
+        "477",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "511": {
+    "inputs": {
+      "file_path": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "330",
+        0
+      ]
+    },
+    "class_type": "SaveImageToLocal",
+    "_meta": {
+      "title": "保存图像到本地"
+    }
+  }
+}

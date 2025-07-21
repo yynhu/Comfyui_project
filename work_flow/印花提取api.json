@@ -1,0 +1,265 @@
+{
+  "508": {
+    "inputs": {
+      "guidance": 2.5,
+      "conditioning": [
+        "511",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "510": {
+    "inputs": {
+      "pixels": [
+        "560",
+        0
+      ],
+      "vae": [
+        "530",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "511": {
+    "inputs": {
+      "conditioning": [
+        "513",
+        0
+      ],
+      "latent": [
+        "510",
+        0
+      ]
+    },
+    "class_type": "ReferenceLatent",
+    "_meta": {
+      "title": "ReferenceLatent"
+    }
+  },
+  "512": {
+    "inputs": {
+      "conditioning": [
+        "511",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "513": {
+    "inputs": {
+      "text": "Just extract the patterns and text on the clothes Convert the pattern into a vector image",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "531",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "530": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "531": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "533": {
+    "inputs": {
+      "seed": 825482507646193
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "543": {
+    "inputs": {
+      "image": "O1CN01yP2FKz23KbHlB9dKC_!!2215864077237.jpg_.webp"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "546": {
+    "inputs": {
+      "seed": [
+        "533",
+        0
+      ],
+      "steps": 20,
+      "cfg": 0.99,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "591",
+        0
+      ],
+      "positive": [
+        "508",
+        0
+      ],
+      "negative": [
+        "512",
+        0
+      ],
+      "latent_image": [
+        "587",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "560": {
+    "inputs": {
+      "image": [
+        "543",
+        0
+      ]
+    },
+    "class_type": "FluxKontextImageScale",
+    "_meta": {
+      "title": "FluxKontextImageScale"
+    }
+  },
+  "583": {
+    "inputs": {
+      "samples": [
+        "546",
+        0
+      ],
+      "vae": [
+        "530",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "586": {
+    "inputs": {
+      "image": [
+        "560",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "587": {
+    "inputs": {
+      "width": [
+        "586",
+        0
+      ],
+      "height": [
+        "586",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "空Latent图像（SD3）"
+    }
+  },
+  "588": {
+    "inputs": {
+      "model_path": "svdq-int4_r32-flux.1-kontext-dev.safetensors",
+      "cache_threshold": 0,
+      "attention": "nunchaku-fp16",
+      "cpu_offload": "auto",
+      "device_id": 0,
+      "data_type": "bfloat16",
+      "i2f_mode": "enabled"
+    },
+    "class_type": "NunchakuFluxDiTLoader",
+    "_meta": {
+      "title": "Nunchaku FluxDiT 加载器"
+    }
+  },
+  "590": {
+    "inputs": {
+      "model": [
+        "588",
+        0
+      ]
+    },
+    "class_type": "CFGZeroStar",
+    "_meta": {
+      "title": "CFGZeroStar"
+    }
+  },
+  "591": {
+    "inputs": {
+      "model": [
+        "590",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "差异扩散DifferentialDiffusion"
+    }
+  },
+  "595": {
+    "inputs": {
+      "file_path": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "583",
+        0
+      ]
+    },
+    "class_type": "SaveImageToLocal",
+    "_meta": {
+      "title": "保存图像到本地"
+    }
+  }
+}

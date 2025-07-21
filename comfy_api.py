@@ -203,6 +203,32 @@ class ImageProcessingClient:
                         for _ in range(4):
                             prompt["7"]["inputs"]["noise_seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
                             self.process_images(ws, prompt, task)
+            case "3":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG|webp)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    return
+                output_path = os.path.join(task, "处理结果")
+                for current_pt in images_list:
+                    final_name, pt_name = self.upload_image(current_pt)
+                    prompt["543"]["inputs"]["image"] = final_name
+                    prompt["595"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
+                    for _ in range(1):
+                        prompt["533"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                        self.process_images(ws, prompt, task)
+            case "4":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    return
+                output_path = os.path.join(task, "处理结果")
+                for current_pt in images_list:
+                    final_name, pt_name = self.upload_image(current_pt)
+                    prompt["131"]["inputs"]["image"] = final_name
+                    prompt["511"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
+                    for _ in range(4):
+                        prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                        self.process_images(ws, prompt, task)
             case _:
                 logger.warning(f"未定义的工作流: {func_name}")
         # rename_folder(task, f"-已完成-{int(time.time()*1000)}")
@@ -213,7 +239,7 @@ class ImageProcessingClient:
     def execute_tasks(self, folder):
         """任务执行主循环"""
         first_folder = tuple((confg["workflow"].keys()))
-        # first_folder = ("2",)
+        # first_folder = ("3", "4")
         while True:
             task_list = generate_task(folder, r"^(?!.*-已完成).+$",first_folder)
             if not task_list:
