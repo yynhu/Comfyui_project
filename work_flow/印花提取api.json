@@ -1,7 +1,7 @@
 {
   "1": {
     "inputs": {
-      "text": "Fix photos, eliminate stains and cracks, increase resolution, eliminate JPEG bad pixels, and keep patterns and text unchanged",
+      "text": "Enhance the clarity of the picture, reduce blurriness and noise, while keeping their details unchanged",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -76,7 +76,7 @@
   },
   "17": {
     "inputs": {
-      "model_name": "2xNomosUni_span_multijpg_ldl.pth"
+      "model_name": "4x-PBRify_UpscalerV4.pth"
     },
     "class_type": "UpscaleModelLoader",
     "_meta": {
@@ -191,8 +191,8 @@
   },
   "24": {
     "inputs": {
-      "seed": 573375361192222,
-      "steps": 20,
+      "seed": 939090499861273,
+      "steps": 12,
       "cfg": 0.99,
       "sampler_name": "euler",
       "scheduler": "simple",
@@ -210,7 +210,7 @@
         0
       ],
       "latent_image": [
-        "30",
+        "159",
         0
       ]
     },
@@ -226,7 +226,7 @@
         0
       ],
       "image": [
-        "18",
+        "117",
         0
       ]
     },
@@ -247,7 +247,7 @@
   "29": {
     "inputs": {
       "pixels": [
-        "33",
+        "135",
         0
       ],
       "vae": [
@@ -260,35 +260,6 @@
       "title": "VAE编码"
     }
   },
-  "30": {
-    "inputs": {
-      "width": [
-        "52",
-        0
-      ],
-      "height": [
-        "52",
-        1
-      ],
-      "batch_size": 1
-    },
-    "class_type": "EmptySD3LatentImage",
-    "_meta": {
-      "title": "空Latent图像（SD3）"
-    }
-  },
-  "31": {
-    "inputs": {
-      "image": [
-        "68",
-        0
-      ]
-    },
-    "class_type": "FluxKontextImageScale",
-    "_meta": {
-      "title": "FluxKontextImageScale"
-    }
-  },
   "33": {
     "inputs": {
       "boolean": [
@@ -296,11 +267,11 @@
         0
       ],
       "on_true": [
-        "76",
+        "155",
         0
       ],
       "on_false": [
-        "31",
+        "68",
         0
       ]
     },
@@ -311,7 +282,7 @@
   },
   "35": {
     "inputs": {
-      "prompt": "Tops and pants",
+      "prompt": "clothes with logos",
       "sort_method": "confidence",
       "bbox_select": "first",
       "select_index": "",
@@ -344,7 +315,7 @@
   "39": {
     "inputs": {
       "image": [
-        "18",
+        "117",
         0
       ]
     },
@@ -377,10 +348,7 @@
         "43",
         0
       ],
-      "c": [
-        "40",
-        1
-      ]
+      "c": 0
     },
     "class_type": "Evaluate Integers",
     "_meta": {
@@ -456,48 +424,9 @@
       "title": "保存图像到本地"
     }
   },
-  "48": {
-    "inputs": {
-      "text": "false",
-      "anything": [
-        "23",
-        0
-      ]
-    },
-    "class_type": "easy showAnything",
-    "_meta": {
-      "title": "展示任何"
-    }
-  },
-  "49": {
-    "inputs": {
-      "text": "178880",
-      "anything": [
-        "42",
-        0
-      ]
-    },
-    "class_type": "easy showAnything",
-    "_meta": {
-      "title": "展示任何"
-    }
-  },
-  "50": {
-    "inputs": {
-      "text": "1337356",
-      "anything": [
-        "43",
-        0
-      ]
-    },
-    "class_type": "easy showAnything",
-    "_meta": {
-      "title": "展示任何"
-    }
-  },
   "51": {
     "inputs": {
-      "text": "0.13375645676992515",
+      "text": "0.12989108511496572",
       "anything": [
         "41",
         1
@@ -505,24 +434,12 @@
     },
     "class_type": "easy showAnything",
     "_meta": {
-      "title": "展示任何"
-    }
-  },
-  "52": {
-    "inputs": {
-      "image": [
-        "33",
-        0
-      ]
-    },
-    "class_type": "easy imageSize",
-    "_meta": {
-      "title": "图像尺寸"
+      "title": "a"
     }
   },
   "54": {
     "inputs": {
-      "prompt": "Printed logo or text",
+      "prompt": "main full logo on cloth",
       "sort_method": "confidence",
       "bbox_select": "first",
       "select_index": "",
@@ -542,40 +459,11 @@
   },
   "55": {
     "inputs": {
-      "image": "similar_459311257748100.png"
+      "image": "similar_624676934198500.png"
     },
     "class_type": "LoadImage",
     "_meta": {
       "title": "加载图像"
-    }
-  },
-  "63": {
-    "inputs": {
-      "sam2_model": "sam2_hiera_small.safetensors",
-      "precision": "bf16",
-      "bbox_select": "first",
-      "select_index": "",
-      "cache_model": true,
-      "detail_method": "VITMatte",
-      "detail_erode": 1,
-      "detail_dilate": 4,
-      "black_point": 0.15000000000000002,
-      "white_point": 0.99,
-      "process_detail": true,
-      "device": "cuda",
-      "max_megapixels": 2,
-      "image": [
-        "55",
-        0
-      ],
-      "bboxes": [
-        "35",
-        0
-      ]
-    },
-    "class_type": "LayerMask: SAM2Ultra",
-    "_meta": {
-      "title": "图层遮罩：SAM2 Ultra"
     }
   },
   "68": {
@@ -583,12 +471,12 @@
       "fill_background": true,
       "background_color": "#FFFFFF",
       "RGBA_image": [
-        "69",
+        "152",
         0
       ],
       "mask": [
-        "98",
-        0
+        "152",
+        1
       ]
     },
     "class_type": "LayerUtility: ImageRemoveAlpha",
@@ -606,8 +494,8 @@
         0
       ],
       "mask": [
-        "63",
-        1
+        "134",
+        0
       ]
     },
     "class_type": "easy imageCropFromMask",
@@ -617,32 +505,11 @@
   },
   "75": {
     "inputs": {
-      "value": 0.12000000000000002
+      "value": 0.09000000000000002
     },
     "class_type": "FloatConstant",
     "_meta": {
-      "title": "浮点常量"
-    }
-  },
-  "76": {
-    "inputs": {
-      "aspect_ratio": "original",
-      "proportional_width": 1,
-      "proportional_height": 1,
-      "fit": "letterbox",
-      "method": "lanczos",
-      "round_to_multiple": "8",
-      "scale_to_side": "longest",
-      "scale_to_length": 512,
-      "background_color": "#000000",
-      "image": [
-        "93",
-        0
-      ]
-    },
-    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
-    "_meta": {
-      "title": "图层工具：按宽高比缩放 V2"
+      "title": "b"
     }
   },
   "79": {
@@ -669,40 +536,314 @@
       "title": "差异扩散DifferentialDiffusion"
     }
   },
-  "93": {
+  "106": {
     "inputs": {
-      "upscale_model": [
-        "17",
+      "python_expression": "a/b",
+      "print_to_console": "False",
+      "a": [
+        "107",
         0
       ],
+      "b": [
+        "108",
+        0
+      ],
+      "c": 0
+    },
+    "class_type": "Evaluate Integers",
+    "_meta": {
+      "title": "整数运算"
+    }
+  },
+  "107": {
+    "inputs": {
+      "value": "a*b",
+      "a": [
+        "110",
+        0
+      ],
+      "b": [
+        "110",
+        1
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "108": {
+    "inputs": {
+      "value": "a*b",
+      "a": [
+        "111",
+        0
+      ],
+      "b": [
+        "111",
+        1
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "110": {
+    "inputs": {
+      "image": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "easy imageSize",
+    "_meta": {
+      "title": "图像尺寸"
+    }
+  },
+  "111": {
+    "inputs": {
+      "image": [
+        "68",
+        0
+      ]
+    },
+    "class_type": "easy imageSize",
+    "_meta": {
+      "title": "图像尺寸"
+    }
+  },
+  "114": {
+    "inputs": {
+      "value": 0.9000000000000002
+    },
+    "class_type": "FloatConstant",
+    "_meta": {
+      "title": "浮点常量"
+    }
+  },
+  "115": {
+    "inputs": {
+      "cmp": "a >= b",
+      "a": [
+        "106",
+        1
+      ],
+      "b": [
+        "114",
+        0
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "117": {
+    "inputs": {
+      "boolean": [
+        "115",
+        0
+      ],
+      "on_true": [
+        "122",
+        0
+      ],
+      "on_false": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "120": {
+    "inputs": {
+      "grow_top": 0,
+      "grow_bottom": 0,
+      "grow_left": 0,
+      "grow_right": 0,
+      "rounded_rect_radius": 0,
+      "anti_aliasing": 0,
+      "image": [
+        "18",
+        0
+      ],
+      "bboxes": [
+        "121",
+        0
+      ]
+    },
+    "class_type": "LayerMask: DrawBBoxMaskV2",
+    "_meta": {
+      "title": "图层遮罩：绘制边界框遮罩 V2（高级）"
+    }
+  },
+  "121": {
+    "inputs": {
+      "prompt": "printing. text. attached to the surface of cloth",
+      "sort_method": "confidence",
+      "bbox_select": "first",
+      "select_index": "",
+      "image": [
+        "18",
+        0
+      ],
+      "florence2_model": [
+        "126",
+        0
+      ]
+    },
+    "class_type": "LayerMask: ObjectDetectorFL2",
+    "_meta": {
+      "title": "图层遮罩：对象检测器 Florence2（高级）"
+    }
+  },
+  "122": {
+    "inputs": {
+      "image_crop_multi": 1,
+      "mask_crop_multi": 1,
+      "bbox_smooth_alpha": 1,
+      "image": [
+        "18",
+        0
+      ],
+      "mask": [
+        "120",
+        0
+      ]
+    },
+    "class_type": "easy imageCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪图像"
+    }
+  },
+  "126": {
+    "inputs": {
+      "version": "Florence-2-Flux-Large"
+    },
+    "class_type": "LayerMask: LoadFlorence2Model",
+    "_meta": {
+      "title": "图层遮罩：加载Florence2模型（高级）"
+    }
+  },
+  "134": {
+    "inputs": {
+      "grow_top": 0,
+      "grow_bottom": 0,
+      "grow_left": 0,
+      "grow_right": 0,
+      "rounded_rect_radius": 0,
+      "anti_aliasing": 0,
+      "image": [
+        "55",
+        0
+      ],
+      "bboxes": [
+        "35",
+        0
+      ]
+    },
+    "class_type": "LayerMask: DrawBBoxMaskV2",
+    "_meta": {
+      "title": "图层遮罩：绘制边界框遮罩 V2（高级）"
+    }
+  },
+  "135": {
+    "inputs": {
+      "image": [
+        "33",
+        0
+      ]
+    },
+    "class_type": "FluxKontextImageScale",
+    "_meta": {
+      "title": "FluxKontextImageScale"
+    }
+  },
+  "151": {
+    "inputs": {
+      "model": "BiRefNet_HR-general-epoch_130.pth"
+    },
+    "class_type": "LayerMask: LoadBiRefNetModel",
+    "_meta": {
+      "title": "图层遮罩：加载BiRefNet模型（高级）"
+    }
+  },
+  "152": {
+    "inputs": {
+      "detail_method": "VITMatte",
+      "detail_erode": 4,
+      "detail_dilate": 2,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "69",
+        0
+      ],
+      "birefnet_model": [
+        "151",
+        0
+      ]
+    },
+    "class_type": "LayerMask: BiRefNetUltraV2",
+    "_meta": {
+      "title": "图层遮罩：BiRefNet Ultra V2（高级）"
+    }
+  },
+  "155": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "longest",
+      "scale_to_length": 512,
+      "background_color": "#000000",
       "image": [
         "25",
         0
       ]
     },
-    "class_type": "ImageUpscaleWithModel",
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
     "_meta": {
-      "title": "使用模型放大图像"
+      "title": "图层工具：按宽高比缩放 V2"
     }
   },
-  "98": {
+  "158": {
     "inputs": {
-      "expand": 0,
-      "incremental_expandrate": 0,
-      "tapered_corners": true,
-      "flip_input": false,
-      "blur_radius": 0,
-      "lerp_alpha": 0,
-      "decay_factor": 1,
-      "fill_holes": true,
-      "mask": [
-        "69",
-        1
+      "image": [
+        "135",
+        0
       ]
     },
-    "class_type": "GrowMaskWithBlur",
+    "class_type": "GetImageSize+",
     "_meta": {
-      "title": "遮罩模糊生长"
+      "title": "获取图像尺寸"
+    }
+  },
+  "159": {
+    "inputs": {
+      "width": [
+        "158",
+        0
+      ],
+      "height": [
+        "158",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "空Latent图像（SD3）"
     }
   }
 }
