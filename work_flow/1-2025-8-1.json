@@ -1,0 +1,643 @@
+{
+  "2": {
+    "inputs": {
+      "prompt": "The most conspicuous logo icons on clothes",
+      "sort_method": "confidence",
+      "bbox_select": "first",
+      "select_index": "",
+      "image": [
+        "21",
+        0
+      ],
+      "florence2_model": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "LayerMask: ObjectDetectorFL2",
+    "_meta": {
+      "title": "图层遮罩：对象检测器 Florence2（高级）"
+    }
+  },
+  "3": {
+    "inputs": {
+      "grow_top": 0,
+      "grow_bottom": 0,
+      "grow_left": 0,
+      "grow_right": 0,
+      "rounded_rect_radius": 0,
+      "anti_aliasing": 0,
+      "image": [
+        "21",
+        0
+      ],
+      "bboxes": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "LayerMask: DrawBBoxMaskV2",
+    "_meta": {
+      "title": "图层遮罩：绘制边界框遮罩 V2（高级）"
+    }
+  },
+  "4": {
+    "inputs": {
+      "model": "BiRefNet_HR-general-epoch_130.pth"
+    },
+    "class_type": "LayerMask: LoadBiRefNetModel",
+    "_meta": {
+      "title": "图层遮罩：加载BiRefNet模型（高级）"
+    }
+  },
+  "6": {
+    "inputs": {
+      "image_crop_multi": 1,
+      "mask_crop_multi": 1,
+      "bbox_smooth_alpha": 1,
+      "image": [
+        "21",
+        0
+      ],
+      "mask": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "easy imageCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪图像"
+    }
+  },
+  "12": {
+    "inputs": {
+      "image": "O1CN01D7fnHM281Qt0mi8lH_!!4611686018427387856-2-item_pic.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "13": {
+    "inputs": {
+      "version": "large-PromptGen-v2.0"
+    },
+    "class_type": "LayerMask: LoadFlorence2Model",
+    "_meta": {
+      "title": "图层遮罩：加载Florence2模型（高级）"
+    }
+  },
+  "14": {
+    "inputs": {
+      "detail_method": "VITMatte",
+      "detail_erode": 4,
+      "detail_dilate": 6,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "12",
+        0
+      ],
+      "birefnet_model": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "LayerMask: BiRefNetUltraV2",
+    "_meta": {
+      "title": "图层遮罩：BiRefNet Ultra V2（高级）"
+    }
+  },
+  "19": {
+    "inputs": {
+      "fill_background": true,
+      "background_color": "#FFFFFF",
+      "RGBA_image": [
+        "14",
+        0
+      ],
+      "mask": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: ImageRemoveAlpha",
+    "_meta": {
+      "title": "图层工具：图像移除Alpha"
+    }
+  },
+  "21": {
+    "inputs": {
+      "image_crop_multi": 1,
+      "mask_crop_multi": 1,
+      "bbox_smooth_alpha": 1,
+      "image": [
+        "19",
+        0
+      ],
+      "mask": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "easy imageCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪图像"
+    }
+  },
+  "23": {
+    "inputs": {
+      "prompt": "The most conspicuous logo icons on clothes",
+      "sort_method": "confidence",
+      "bbox_select": "first",
+      "select_index": "",
+      "image": [
+        "62",
+        0
+      ],
+      "florence2_model": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "LayerMask: ObjectDetectorFL2",
+    "_meta": {
+      "title": "图层遮罩：对象检测器 Florence2（高级）"
+    }
+  },
+  "25": {
+    "inputs": {
+      "grow_top": 0,
+      "grow_bottom": 0,
+      "grow_left": 0,
+      "grow_right": 0,
+      "rounded_rect_radius": 0,
+      "anti_aliasing": 0,
+      "image": [
+        "62",
+        0
+      ],
+      "bboxes": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "LayerMask: DrawBBoxMaskV2",
+    "_meta": {
+      "title": "图层遮罩：绘制边界框遮罩 V2（高级）"
+    }
+  },
+  "26": {
+    "inputs": {
+      "image_crop_multi": 1,
+      "mask_crop_multi": 1,
+      "bbox_smooth_alpha": 1,
+      "image": [
+        "62",
+        0
+      ],
+      "mask": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "easy imageCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪图像"
+    }
+  },
+  "30": {
+    "inputs": {
+      "api_key": "0766e7e1804e47989b8306ca707dc78a.HUJrHyjg1F0AxQV0",
+      "model": "glm-4.1v-thinking-flash",
+      "prompt": "任务：判断图2是否为图1服饰商品主图中的‘印花’。\n定义：\n1. 印花指：服饰外表面（非内侧）的装饰性或标识性元素，包括但不限于：\n   - 印刷的图案、文字、纹样、色块组合等\n   - 刺绣工艺制作的图案、文字等\n   - 胶质材质的标签、图案或文字（粘贴/附着于外表面）\n   以上均视为服饰本身设计的一部分。\n\n2. 需排除的内容（即使在服饰上也不属于印花）：\n   - 所有广告信息、促销标语、价格标签(如“清凉透气”“UPF50+”等)\n   - 服饰卖点描述（如“纯棉”“修身”等文字）\n   - 款式信息（如“XX款”“尺码表”“阔腿裤”“冰丝网眼”等）\n   - 明显的品牌logo(\"真维斯\"、\"JEANS\"等等)\n   - 衣服内侧的织唛、水洗标、成分标等缝制/粘贴的标签\n   - 功能性配件（如纽扣、拉链、按扣等，除非其本身带有上述印花元素）\n\n判断依据：\n图2是从图1中截取的截图，若图2内容完全符合上述“印花”定义，且不属于任何排除项（在思考时尽量避免模棱两可的判断），则结果为“true”；否则为“false”。\n\n输出要求：\n严格以JSON格式直接输出结果，不包含任何分析、解释或额外内容，格式示例：{\"result\":true} 或 {\"result\":false}”",
+      "temperature": 0.95,
+      "top_p": 0.7,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image1": [
+        "21",
+        0
+      ],
+      "image2": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "GLMALLNode",
+    "_meta": {
+      "title": "GLM-model-calling"
+    }
+  },
+  "31": {
+    "inputs": {
+      "text_0": "{\"result\":true}",
+      "text": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "34": {
+    "inputs": {
+      "boolean": [
+        "52",
+        0
+      ],
+      "on_true": [
+        "6",
+        0
+      ],
+      "on_false": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "47": {
+    "inputs": {
+      "json_string": [
+        "80",
+        0
+      ]
+    },
+    "class_type": "JsonParseNode",
+    "_meta": {
+      "title": "Pyobjects/JSON -> PyObject"
+    }
+  },
+  "48": {
+    "inputs": {
+      "key": "result",
+      "py_dict": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "DictGetNode",
+    "_meta": {
+      "title": "Pyobjects/Dict Get"
+    }
+  },
+  "52": {
+    "inputs": {
+      "value": [
+        "48",
+        0
+      ]
+    },
+    "class_type": "easy boolean",
+    "_meta": {
+      "title": "布尔"
+    }
+  },
+  "60": {
+    "inputs": {
+      "width": [
+        "61",
+        0
+      ],
+      "height": [
+        "61",
+        1
+      ],
+      "color": "#ffffff"
+    },
+    "class_type": "LayerUtility: ColorImage",
+    "_meta": {
+      "title": "图层工具：纯色图像"
+    }
+  },
+  "61": {
+    "inputs": {
+      "image": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "62": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "background_image": [
+        "60",
+        0
+      ],
+      "layer_image": [
+        "21",
+        0
+      ],
+      "layer_mask": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlend",
+    "_meta": {
+      "title": "图层工具：图像混合"
+    }
+  },
+  "66": {
+    "inputs": {
+      "text": "True",
+      "anything": [
+        "52",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "80": {
+    "inputs": {
+      "python_expression": "a.strip().split(\"}\",1)[0]+\"}\"",
+      "print_to_console": "False",
+      "a": [
+        "31",
+        0
+      ],
+      "b": " World",
+      "c": "!"
+    },
+    "class_type": "Evaluate Strings",
+    "_meta": {
+      "title": "字符串运算"
+    }
+  },
+  "82": {
+    "inputs": {
+      "upscale_model": "4x-PBRify_UpscalerV4.pth",
+      "mode": "resize",
+      "rescale_factor": 2,
+      "resize_width": 768,
+      "resampling_method": "lanczos",
+      "supersample": "true",
+      "rounding_modulus": 8,
+      "image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "CR Upscale Image",
+    "_meta": {
+      "title": "放大图像"
+    }
+  },
+  "84": {
+    "inputs": {
+      "conditioning": [
+        "92",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "85": {
+    "inputs": {
+      "samples": [
+        "87",
+        0
+      ],
+      "vae": [
+        "91",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "86": {
+    "inputs": {
+      "guidance": 5,
+      "conditioning": [
+        "92",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "87": {
+    "inputs": {
+      "seed": 120636387566126,
+      "steps": 12,
+      "cfg": 0.99,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "88",
+        0
+      ],
+      "positive": [
+        "86",
+        0
+      ],
+      "negative": [
+        "84",
+        0
+      ],
+      "latent_image": [
+        "90",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "88": {
+    "inputs": {
+      "model": [
+        "89",
+        0
+      ]
+    },
+    "class_type": "CFGZeroStar",
+    "_meta": {
+      "title": "CFGZeroStar"
+    }
+  },
+  "89": {
+    "inputs": {
+      "model": [
+        "100",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "差异扩散DifferentialDiffusion"
+    }
+  },
+  "90": {
+    "inputs": {
+      "pixels": [
+        "82",
+        0
+      ],
+      "vae": [
+        "91",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "91": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "92": {
+    "inputs": {
+      "conditioning": [
+        "96",
+        0
+      ],
+      "latent": [
+        "90",
+        0
+      ]
+    },
+    "class_type": "ReferenceLatent",
+    "_meta": {
+      "title": "ReferenceLatent"
+    }
+  },
+  "93": {
+    "inputs": {
+      "file_path": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "85",
+        0
+      ]
+    },
+    "class_type": "SaveImageToLocal",
+    "_meta": {
+      "title": "保存图像到本地（kontent）"
+    }
+  },
+  "95": {
+    "inputs": {
+      "model_path": "svdq-int4_r32-flux.1-kontext-dev.safetensors",
+      "cache_threshold": 0.12000000000000002,
+      "attention": "nunchaku-fp16",
+      "cpu_offload": "auto",
+      "device_id": 0,
+      "data_type": "bfloat16",
+      "i2f_mode": "enabled"
+    },
+    "class_type": "NunchakuFluxDiTLoader",
+    "_meta": {
+      "title": "Nunchaku FluxDiT 加载器"
+    }
+  },
+  "96": {
+    "inputs": {
+      "text": "Ignore the background of the image, extract the pattern and text in the image, and convert it into a vector image",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "97",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "大图"
+    }
+  },
+  "97": {
+    "inputs": {
+      "clip_name1": "LongCLIP-L.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "100": {
+    "inputs": {
+      "lora_name": "Turbo\\FLUX.1-Turbo-Alpha.safetensors",
+      "lora_strength": 1,
+      "model": [
+        "95",
+        0
+      ]
+    },
+    "class_type": "NunchakuFluxLoraLoader",
+    "_meta": {
+      "title": "Nunchaku FluxLora 加载器"
+    }
+  },
+  "101": {
+    "inputs": {
+      "file_path": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "82",
+        0
+      ]
+    },
+    "class_type": "SaveImageToLocal",
+    "_meta": {
+      "title": "保存图像到本地（原始截图保存）"
+    }
+  }
+}

@@ -171,13 +171,17 @@ class ImageProcessingClient:
         prompt = json.loads(json_str)
         match func_name:
             case "1":
-                images_list = self.upload_folder(task)
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
                 if not images_list:
+                    logger.warning(f"未找到图片: {task}")
                     return
                 prompt["255"]["inputs"]["file_path"] = os.path.join(task, "处理结果")
-                for current_tuple in images_list:
-                    filename, origin_name = current_tuple
-                    prompt["233"]["inputs"]["image"] = filename
+                for current_pt in images_list:
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["233"]["inputs"]["image"] = final_name
                     self.process_images(ws, prompt, task)
                     
             case "2":
@@ -195,7 +199,10 @@ class ImageProcessingClient:
                     output_path = os.path.join(task, "处理结果")
                     for current_pt in images_list:
                         # pt_name = os.path.basename(current_pt).rsplit(".", 1)[0]
-                        final_name,pt_name = self.upload_image(current_pt)
+                        result = self.upload_image(current_pt)
+                        if result is None:
+                            continue
+                        final_name,pt_name = result
 
                         prompt["29"]["inputs"]["text"] = word
                         prompt["14"]["inputs"]["image"] = final_name
@@ -210,11 +217,15 @@ class ImageProcessingClient:
                     return
                 output_path = os.path.join(task, "处理结果")
                 for current_pt in images_list:
-                    final_name, pt_name = self.upload_image(current_pt)
-                    prompt["55"]["inputs"]["image"] = final_name
-                    prompt["47"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["12"]["inputs"]["image"] = final_name
+                    prompt["101"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
+                    prompt["93"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
                     for _ in range(1):
-                        prompt["24"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                        prompt["87"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
                         self.process_images(ws, prompt, task)
             case "4":
                 images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
@@ -223,7 +234,10 @@ class ImageProcessingClient:
                     return
                 output_path = os.path.join(task, "处理结果")
                 for current_pt in images_list:
-                    final_name, pt_name = self.upload_image(current_pt)
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
                     prompt["131"]["inputs"]["image"] = final_name
                     prompt["511"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
                     for _ in range(4):
@@ -239,7 +253,7 @@ class ImageProcessingClient:
     def execute_tasks(self, folder):
         """任务执行主循环"""
         first_folder = tuple((confg["workflow"].keys()))
-        # first_folder = ("3")
+        # first_folder = ("2",)
         while True:
             task_list = generate_task(folder, r"^(?!.*-已完成).+$",first_folder)
             if not task_list:
