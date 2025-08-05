@@ -71,7 +71,7 @@
   },
   "12": {
     "inputs": {
-      "image": "O1CN01D7fnHM281Qt0mi8lH_!!4611686018427387856-2-item_pic.png"
+      "image": "similar_1148892249714900.png"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -238,7 +238,7 @@
   },
   "31": {
     "inputs": {
-      "text_0": "{\"result\":true}",
+      "text_0": "{\"result\": true}",
       "text": [
         "30",
         0
@@ -389,7 +389,7 @@
   },
   "82": {
     "inputs": {
-      "upscale_model": "4x-PBRify_UpscalerV4.pth",
+      "upscale_model": "4xNomos8kSCHAT-L.pth",
       "mode": "resize",
       "rescale_factor": 2,
       "resize_width": 768,
@@ -436,7 +436,7 @@
   },
   "86": {
     "inputs": {
-      "guidance": 5,
+      "guidance": 2.5,
       "conditioning": [
         "92",
         0
@@ -449,7 +449,7 @@
   },
   "87": {
     "inputs": {
-      "seed": 120636387566126,
+      "seed": 926763343372532,
       "steps": 12,
       "cfg": 0.99,
       "sampler_name": "euler",
@@ -468,7 +468,7 @@
         0
       ],
       "latent_image": [
-        "90",
+        "102",
         0
       ]
     },
@@ -578,7 +578,7 @@
   },
   "96": {
     "inputs": {
-      "text": "Ignore the background of the image, extract the pattern and text in the image, and convert it into a vector image",
+      "text": "Ignore the background of the image, extract patterns and text from the image, maintain its own color, and convert it into a vector image",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -638,6 +638,35 @@
     "class_type": "SaveImageToLocal",
     "_meta": {
       "title": "保存图像到本地（原始截图保存）"
+    }
+  },
+  "102": {
+    "inputs": {
+      "width": [
+        "103",
+        0
+      ],
+      "height": [
+        "103",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "空Latent图像（SD3）"
+    }
+  },
+  "103": {
+    "inputs": {
+      "image": [
+        "82",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
     }
   }
 }
