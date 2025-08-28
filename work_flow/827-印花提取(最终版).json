@@ -1,0 +1,798 @@
+{
+  "1": {
+    "inputs": {
+      "conditioning": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "2": {
+    "inputs": {
+      "guidance": 2.5,
+      "conditioning": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "3": {
+    "inputs": {
+      "seed": 719714258975303,
+      "steps": 12,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "2",
+        0
+      ],
+      "negative": [
+        "1",
+        0
+      ],
+      "latent_image": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "4": {
+    "inputs": {
+      "pixels": [
+        "30",
+        0
+      ],
+      "vae": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "5": {
+    "inputs": {
+      "conditioning": [
+        "11",
+        0
+      ],
+      "latent": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "ReferenceLatent",
+    "_meta": {
+      "title": "ReferenceLatent"
+    }
+  },
+  "6": {
+    "inputs": {
+      "width": [
+        "7",
+        0
+      ],
+      "height": [
+        "7",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "空Latent图像（SD3）"
+    }
+  },
+  "7": {
+    "inputs": {
+      "image": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "8": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "9": {
+    "inputs": {
+      "model_path": "svdq-int4_r32-flux.1-kontext-dev.safetensors",
+      "cache_threshold": 0.12,
+      "attention": "nunchaku-fp16",
+      "cpu_offload": "auto",
+      "device_id": 0,
+      "data_type": "bfloat16",
+      "i2f_mode": "enabled"
+    },
+    "class_type": "NunchakuFluxDiTLoader",
+    "_meta": {
+      "title": "Nunchaku FluxDiT 加载器"
+    }
+  },
+  "10": {
+    "inputs": {
+      "clip_name1": "LongCLIP-L.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "11": {
+    "inputs": {
+      "text": "Ignore the background of the image, extract patterns and text from the image, maintain its own color, and convert it into a flat vector image",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "大图"
+    }
+  },
+  "12": {
+    "inputs": {
+      "model": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "差异扩散DifferentialDiffusion"
+    }
+  },
+  "13": {
+    "inputs": {
+      "model": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "CFGZeroStar",
+    "_meta": {
+      "title": "CFGZeroStar"
+    }
+  },
+  "14": {
+    "inputs": {
+      "detail_method": "VITMatte",
+      "detail_erode": 4,
+      "detail_dilate": 6,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "36",
+        0
+      ],
+      "birefnet_model": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "LayerMask: BiRefNetUltraV2",
+    "_meta": {
+      "title": "图层遮罩：BiRefNet Ultra V2（高级）"
+    }
+  },
+  "15": {
+    "inputs": {
+      "model": "BiRefNet_HR-general-epoch_130.pth"
+    },
+    "class_type": "LayerMask: LoadBiRefNetModel",
+    "_meta": {
+      "title": "图层遮罩：加载BiRefNet模型（高级）"
+    }
+  },
+  "16": {
+    "inputs": {
+      "lora_name": "Turbo\\FLUX.1-Turbo-Alpha.safetensors",
+      "lora_strength": 1,
+      "model": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "NunchakuFluxLoraLoader",
+    "_meta": {
+      "title": "Nunchaku FluxLora 加载器"
+    }
+  },
+  "17": {
+    "inputs": {
+      "grow_top": 0,
+      "grow_bottom": 0,
+      "grow_left": 0,
+      "grow_right": 0,
+      "rounded_rect_radius": 0,
+      "anti_aliasing": 0,
+      "image": [
+        "26",
+        0
+      ],
+      "bboxes": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "LayerMask: DrawBBoxMaskV2",
+    "_meta": {
+      "title": "图层遮罩：绘制边界框遮罩 V2（高级）"
+    }
+  },
+  "19": {
+    "inputs": {
+      "image_crop_multi": 1,
+      "mask_crop_multi": 1,
+      "bbox_smooth_alpha": 1,
+      "image": [
+        "26",
+        0
+      ],
+      "mask": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "easy imageCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪图像"
+    }
+  },
+  "20": {
+    "inputs": {
+      "version": "large-PromptGen-v2.0"
+    },
+    "class_type": "LayerMask: LoadFlorence2Model",
+    "_meta": {
+      "title": "图层遮罩：加载Florence2模型（高级）"
+    }
+  },
+  "22": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "23": {
+    "inputs": {
+      "file_path": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "SaveImageToLocal",
+    "_meta": {
+      "title": "保存图像到本地（kontent）"
+    }
+  },
+  "24": {
+    "inputs": {
+      "prompt": "The most conspicuous logo icons on clothes",
+      "sort_method": "confidence",
+      "bbox_select": "first",
+      "select_index": "",
+      "image": [
+        "26",
+        0
+      ],
+      "florence2_model": [
+        "80",
+        0
+      ]
+    },
+    "class_type": "LayerMask: ObjectDetectorFL2",
+    "_meta": {
+      "title": "图层遮罩：对象检测器 Florence2（高级）"
+    }
+  },
+  "26": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "background_image": [
+        "29",
+        0
+      ],
+      "layer_image": [
+        "43",
+        0
+      ],
+      "layer_mask": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlend",
+    "_meta": {
+      "title": "图层工具：图像混合"
+    }
+  },
+  "28": {
+    "inputs": {
+      "image": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "29": {
+    "inputs": {
+      "width": [
+        "28",
+        0
+      ],
+      "height": [
+        "28",
+        1
+      ],
+      "color": "#ffffff"
+    },
+    "class_type": "LayerUtility: ColorImage",
+    "_meta": {
+      "title": "图层工具：纯色图像"
+    }
+  },
+  "30": {
+    "inputs": {
+      "upscale_model": "4xNomos8kSCHAT-L.pth",
+      "mode": "resize",
+      "rescale_factor": 2,
+      "resize_width": 768,
+      "resampling_method": "lanczos",
+      "supersample": "true",
+      "rounding_modulus": 8,
+      "image": [
+        "86",
+        0
+      ]
+    },
+    "class_type": "CR Upscale Image",
+    "_meta": {
+      "title": "放大图像"
+    }
+  },
+  "32": {
+    "inputs": {
+      "file_path": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "SaveImageToLocal",
+    "_meta": {
+      "title": "保存图像到本地（原始截图保存）"
+    }
+  },
+  "33": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "34": {
+    "inputs": {
+      "api_key": "ff6fade9cd1340f0bea4f7c7ed6ea5b4.syVgdD0Un5OzK73B",
+      "model": "glm-4.5v",
+      "prompt": "任务：判断图片中用带数字的矩形框标注出的内容是否属于‘印花’,如果不属于再继续判断图片中是否存在‘印花’。\n1. 印花的定义：服饰外表面粘贴/附着于外表面（非内侧的织唛、水洗标、成分标等缝制/粘贴的标签）的装饰性或标识性元素，一般位于服饰上视觉焦点区域，包括 但不限于，印刷的图案、文字、字母、纹样、色块组合、刺绣工艺制作的图案、文字等、胶质材质的标 签、图案或文字\n\n判断依据：\n若图片中带数字的矩形框标注出的内容完全符合上述“印花”定义，且不属于任何排除项（请基于图片特征直接给出结论，无需犹豫或补充可能情况），则结果为0,否则继续判断，图片中存在印花时结果为1，不存在时结果为2。\n\n输出要求：\n严格以JSON格式直接输出结果，不包含任何分析、解释或额外内容，格式示例：{\"result\":0} 或 {\"result\":1}”,{\"result\":2}”",
+      "temperature": 0.3,
+      "top_p": 0.5,
+      "max_tokens": 2000,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image1": [
+        "46",
+        1
+      ]
+    },
+    "class_type": "GLMALLNode",
+    "_meta": {
+      "title": "GLM-model-calling"
+    }
+  },
+  "35": {
+    "inputs": {
+      "text_0": "\n{\"result\":1}",
+      "text": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "36": {
+    "inputs": {
+      "image": "O1CN0165Zvoe22uUousBQET_!!4611686018427383756-0-item_pic.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "37": {
+    "inputs": {
+      "python_expression": "a.strip().split(\"}\",1)[0]+\"}\"",
+      "print_to_console": "False",
+      "a": [
+        "35",
+        0
+      ],
+      "b": " World",
+      "c": "!"
+    },
+    "class_type": "Evaluate Strings",
+    "_meta": {
+      "title": "字符串运算"
+    }
+  },
+  "39": {
+    "inputs": {
+      "json_string": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "JsonParseNode",
+    "_meta": {
+      "title": "Pyobjects/JSON -> PyObject"
+    }
+  },
+  "40": {
+    "inputs": {
+      "key": "result",
+      "py_dict": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "DictGetNode",
+    "_meta": {
+      "title": "Pyobjects/Dict Get"
+    }
+  },
+  "42": {
+    "inputs": {
+      "fill_background": true,
+      "background_color": "#FFFFFF",
+      "RGBA_image": [
+        "14",
+        0
+      ],
+      "mask": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: ImageRemoveAlpha",
+    "_meta": {
+      "title": "图层工具：图像移除Alpha"
+    }
+  },
+  "43": {
+    "inputs": {
+      "image_crop_multi": 1,
+      "mask_crop_multi": 1,
+      "bbox_smooth_alpha": 1,
+      "image": [
+        "42",
+        0
+      ],
+      "mask": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "easy imageCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪图像"
+    }
+  },
+  "46": {
+    "inputs": {
+      "prompt": "The most conspicuous logo icons on clothes",
+      "sort_method": "confidence",
+      "bbox_select": "first",
+      "select_index": "",
+      "image": [
+        "43",
+        0
+      ],
+      "florence2_model": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "LayerMask: ObjectDetectorFL2",
+    "_meta": {
+      "title": "图层遮罩：对象检测器 Florence2（高级）"
+    }
+  },
+  "61": {
+    "inputs": {
+      "grow_top": 0,
+      "grow_bottom": 0,
+      "grow_left": 0,
+      "grow_right": 0,
+      "rounded_rect_radius": 0,
+      "anti_aliasing": 0,
+      "image": [
+        "43",
+        0
+      ],
+      "bboxes": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "LayerMask: DrawBBoxMaskV2",
+    "_meta": {
+      "title": "图层遮罩：绘制边界框遮罩 V2（高级）"
+    }
+  },
+  "63": {
+    "inputs": {
+      "image_crop_multi": 1,
+      "mask_crop_multi": 1,
+      "bbox_smooth_alpha": 1,
+      "image": [
+        "43",
+        0
+      ],
+      "mask": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "easy imageCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪图像"
+    }
+  },
+  "75": {
+    "inputs": {
+      "value": "a/b",
+      "a": [
+        "76",
+        0
+      ],
+      "b": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "76": {
+    "inputs": {
+      "value": 1
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "77": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "80": {
+    "inputs": {
+      "version": "large-PromptGen-v2.0"
+    },
+    "class_type": "LayerMask: LoadFlorence2Model",
+    "_meta": {
+      "title": "图层遮罩：加载Florence2模型（高级）"
+    }
+  },
+  "86": {
+    "inputs": {
+      "boolean": [
+        "101",
+        0
+      ],
+      "on_true": [
+        "75",
+        0
+      ],
+      "on_false": [
+        "95",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "88": {
+    "inputs": {
+      "value": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "94": {
+    "inputs": {
+      "value": 2
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "95": {
+    "inputs": {
+      "boolean": [
+        "102",
+        0
+      ],
+      "on_true": [
+        "63",
+        0
+      ],
+      "on_false": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "98": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "100": {
+    "inputs": {
+      "text": "1",
+      "anything": [
+        "88",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "101": {
+    "inputs": {
+      "comparison": "a == b",
+      "a": [
+        "88",
+        0
+      ],
+      "b": [
+        "94",
+        0
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "102": {
+    "inputs": {
+      "comparison": "a == b",
+      "a": [
+        "88",
+        0
+      ],
+      "b": [
+        "98",
+        0
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "比较"
+    }
+  }
+}

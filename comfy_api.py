@@ -221,11 +221,11 @@ class ImageProcessingClient:
                     if result is None:
                         continue
                     final_name, pt_name = result
-                    prompt["12"]["inputs"]["image"] = final_name
-                    prompt["101"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
-                    prompt["93"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
+                    prompt["36"]["inputs"]["image"] = final_name
+                    prompt["23"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
+                    prompt["32"]["inputs"]["file_path"] = os.path.join(output_path, f"{pt_name}.png")
                     for _ in range(1):
-                        prompt["87"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                        prompt["3"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
                         self.process_images(ws, prompt, task)
             case "4":
                 images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
@@ -253,7 +253,7 @@ class ImageProcessingClient:
     def execute_tasks(self, folder):
         """任务执行主循环"""
         first_folder = tuple((confg["workflow"].keys()))
-        # first_folder = ("2",)
+        # first_folder = ("3",)
         while True:
             task_list = generate_task(folder, r"^(?!.*-已完成).+$",first_folder)
             if not task_list:

@@ -22,7 +22,8 @@ with open("img.png", 'rb') as f:
 
 client = ZhipuAI(api_key="0766e7e1804e47989b8306ca707dc78a.HUJrHyjg1F0AxQV0") # 填写您自己的APIKey
 response = client.chat.completions.create(
-    model="glm-4.1v-thinking-flash",
+    # model="glm-4.1v-thinking-flash",
+    model="glm-4.5V",
     messages=[
        {
         "role": "user",
