@@ -1,0 +1,59 @@
+{
+  "6": {
+    "inputs": {
+      "image": "1 (7).jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "13": {
+    "inputs": {
+      "model": "BiRefNet-general-epoch_244.pth"
+    },
+    "class_type": "LayerMask: LoadBiRefNetModel",
+    "_meta": {
+      "title": "LayerMask: Load BiRefNet Model(Advance)"
+    }
+  },
+  "17": {
+    "inputs": {
+      "detail_method": "VITMatte",
+      "detail_erode": 4,
+      "detail_dilate": 2,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "6",
+        0
+      ],
+      "birefnet_model": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "LayerMask: BiRefNetUltraV2",
+    "_meta": {
+      "title": "BiRefNet Ultra V2"
+    }
+  },
+  "31": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "output_folder": "C:\\Users\\Administrator\\Desktop\\跑图文件夹",
+      "caption_file_extension": ".png",
+      "images": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SaveImageKJ",
+    "_meta": {
+      "title": "保存图像KJ"
+    }
+  }
+}

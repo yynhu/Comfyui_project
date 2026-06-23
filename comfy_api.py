@@ -154,12 +154,11 @@ class ImageProcessingClient:
         """处理单个任务"""
         logger.info(f"开始任务: {task}")
         self.logger.info(f"开始任务: {task}")
-
         if not os.path.exists(task):
             logger.warning(f"文件夹已被人为删除: {task}")
             return
 
-        open(f"{task}/【已检测到该文件夹，请勿删除】.txt", 'w').close()
+        open(f"{task}/【文件正在处理中.......，请勿删除】.txt", 'w').close()
         list_ = task.split(folder, 1)[1].strip("\\").split("\\")
         func_name = list_[0].split("-", 1)[0]
         if func_name not in confg['workflow']:
@@ -243,19 +242,164 @@ class ImageProcessingClient:
                     for _ in range(4):
                         prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
                         self.process_images(ws, prompt, task)
+            case "5":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    open(f"{task}/【未找到图片,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                output_path = os.path.join(task, "处理结果")
+                for current_pt in images_list:
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["6"]["inputs"]["image"] = final_name
+                    prompt["31"]["inputs"]["filename_prefix"] = f"{pt_name}"
+                    prompt["31"]["inputs"]["output_folder"] = output_path
+                    # for _ in range(4):
+                    #     prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                    self.process_images(ws, prompt, task)
+            case "6":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    open(f"{task}/【未找到图片,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                output_path = os.path.join(task, "处理结果")
+                for current_pt in images_list:
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["233"]["inputs"]["image"] = final_name
+                    prompt["234"]["inputs"]["filename_prefix"] = f"{pt_name}"
+                    prompt["234"]["inputs"]["output_folder"] = output_path
+                    # for _ in range(4):
+                    #     prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                    self.process_images(ws, prompt, task)
+            case "7":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    open(f"{task}/【未找到图片,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                output_path = os.path.join(task, "处理结果")
+                for current_pt in images_list:
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["4"]["inputs"]["image"] = final_name
+                    prompt["7"]["inputs"]["filename_prefix"] = f"{pt_name}"
+                    prompt["7"]["inputs"]["output_folder"] = output_path
+                    # for _ in range(4):
+                    #     prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                    self.process_images(ws, prompt, task)
+            case "8":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    open(f"{task}/【未找到图片,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                output_path = os.path.join(task, "处理结果")
+                for current_pt in images_list:
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["24"]["inputs"]["image"] = final_name
+                    prompt["23"]["inputs"]["filename_prefix"] = f"{pt_name}"
+                    prompt["23"]["inputs"]["output_folder"] = output_path
+                    # for _ in range(4):
+                    #     prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                    self.process_images(ws, prompt, task)
+            case "9":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    open(f"{task}/【未找到图片,处理完成后请将我删除】.txt", 'w').close()
+                    pass
+                output_path = os.path.join(task, "处理结果")
+                for current_pt in images_list:
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["11"]["inputs"]["image"] = final_name
+                    prompt["21"]["inputs"]["filename_prefix"] = f"{pt_name}"
+                    prompt["21"]["inputs"]["output_folder"] = output_path
+                    # for _ in range(4):
+                    #     prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                    self.process_images(ws, prompt, task)
+            case "10":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    open(f"{task}/【未找到图片,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                if len(images_list)==1:
+                    logger.warning(f"缺少图片: {task}")
+                    open(f"{task}/【缺少图片,至少两张图片,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                # 获取包含"平铺"图片
+                product_list = list(filter(lambda x: "平铺" in x.rsplit("\\",1)[1], images_list))
+                if not product_list:
+                    logger.warning(f"未找到平铺图: {task}")
+                    open(f"{task}/【未找到平铺图,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                if len(product_list)>=2:
+                    logger.warning(f"文件夹中只能有一张平铺图: {task}")
+                    open(f"{task}/【文件夹中只能有一张平铺图,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                product_pic = product_list[0]
+                output_path = os.path.join(task, "处理结果")
+                final_name_pro, pt_name_pro = self.upload_image(product_pic)
+                for current_pt in images_list:
+                    if current_pt == product_pic:
+                        continue
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["20"]["inputs"]["image"] = final_name_pro
+                    prompt["1"]["inputs"]["image"] = final_name
+                    prompt["193"]["inputs"]["filename_prefix"] = f"{pt_name}"
+                    prompt["193"]["inputs"]["output_folder"] = output_path
+                    # for _ in range(4):
+                    #     prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                    self.process_images(ws, prompt, task)
+            case "11":
+                images_list = list(find_file_matching_pattern(task, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                if not images_list:
+                    logger.warning(f"未找到图片: {task}")
+                    open(f"{task}/【未找到图片,处理完成后请将我删除】.txt", 'w').close()
+                    return
+                output_path = os.path.join(task, "处理结果")
+                for current_pt in images_list:
+                    result = self.upload_image(current_pt)
+                    if result is None:
+                        continue
+                    final_name, pt_name = result
+                    prompt["8"]["inputs"]["image"] = final_name
+                    prompt["64"]["inputs"]["filename_prefix"] = f"{pt_name}"
+                    prompt["64"]["inputs"]["output_folder"] = output_path
+                    # for _ in range(4):
+                    #     prompt["328"]["inputs"]["seed"] = random.randint(10 ** 14, 10 ** 15 - 1)
+                    self.process_images(ws, prompt, task)
             case _:
                 logger.warning(f"未定义的工作流: {func_name}")
         # rename_folder(task, f"-已完成-{int(time.time()*1000)}")
         open(f"{task}/【已完成】.txt", 'w').close()
-        delete_file(task, "【已检测到该文件夹，请勿删除】.txt")
-        rename_folder(task, "-已完成")
+        delete_file(task, "【文件正在处理中.......，请勿删除】.txt")
+        rename_folder(task, f"-已完成{int(time.time()*1000)}")
 
     def execute_tasks(self, folder):
         """任务执行主循环"""
         first_folder = tuple((confg["workflow"].keys()))
         # first_folder = ("3",)
         while True:
-            task_list = generate_task(folder, r"^(?!.*-已完成).+$",first_folder)
+            task_list = generate_task(folder, r"^(?!.*-已完成(?:\d+)?$).+$", first_folder)
             if not task_list:
                 logger.info(f"未检测到任务, 5s 后重试...")
                 time.sleep(5)
@@ -278,5 +422,5 @@ if __name__ == "__main__":
     os.makedirs(ai_folder, exist_ok=True)
     log_app = CustomLogging("app_log", os.path.join(ai_folder, "日志.txt"))
     client = ImageProcessingClient()
-    client.execute_tasks(r'\\172.16.1.5\全员共享\ai')
+    client.execute_tasks(r'z:\品禾云盘\AI自动跑图工作流')
 

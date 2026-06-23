@@ -1,0 +1,441 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 774440750472824,
+      "steps": 30,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.7,
+      "model": [
+        "40",
+        0
+      ],
+      "positive": [
+        "21",
+        0
+      ],
+      "negative": [
+        "21",
+        1
+      ],
+      "latent_image": [
+        "35",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "4": {
+    "inputs": {
+      "text": "A sweet-looking Asian boy's face, real and natural skin",
+      "clip": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "5": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "6": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "7": {
+    "inputs": {
+      "conditioning": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "8": {
+    "inputs": {
+      "image": "1 (24).jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "10": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "14": {
+    "inputs": {
+      "downscale_algorithm": "bicubic",
+      "upscale_algorithm": "bicubic",
+      "preresize": false,
+      "preresize_mode": "ensure minimum resolution",
+      "preresize_min_width": 1024,
+      "preresize_min_height": 1024,
+      "preresize_max_width": 16384,
+      "preresize_max_height": 16384,
+      "mask_fill_holes": true,
+      "mask_expand_pixels": 32,
+      "mask_invert": false,
+      "mask_blend_pixels": 64,
+      "mask_hipass_filter": 0.1,
+      "extend_for_outpainting": false,
+      "extend_up_factor": 1,
+      "extend_down_factor": 1,
+      "extend_left_factor": 1,
+      "extend_right_factor": 1,
+      "context_from_mask_extend_factor": 1.4,
+      "output_resize_to_target_size": true,
+      "output_target_width": 512,
+      "output_target_height": 512,
+      "output_padding": "8",
+      "device_mode": "cpu (compatible)",
+      "image": [
+        "8",
+        0
+      ],
+      "mask": [
+        "51",
+        1
+      ],
+      "optional_context_mask": [
+        "51",
+        1
+      ]
+    },
+    "class_type": "InpaintCropImproved",
+    "_meta": {
+      "title": "✂️ Inpaint Crop"
+    }
+  },
+  "16": {
+    "inputs": {
+      "mask": [
+        "14",
+        2
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "17": {
+    "inputs": {
+      "stitcher": [
+        "14",
+        0
+      ],
+      "inpainted_image": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "InpaintStitchImproved",
+    "_meta": {
+      "title": "✂️ Inpaint Stitch"
+    }
+  },
+  "19": {
+    "inputs": {
+      "control_net_name": "FLUX.1-dev-ControlNet-Union-Pro-2.0.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "加载ControlNet模型"
+    }
+  },
+  "21": {
+    "inputs": {
+      "strength": 0.4,
+      "start_percent": 0,
+      "end_percent": 0.6,
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "control_net": [
+        "19",
+        0
+      ],
+      "image": [
+        "24",
+        0
+      ],
+      "vae": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "应用ControlNet（旧版高级）"
+    }
+  },
+  "24": {
+    "inputs": {
+      "preprocessor": "DepthAnythingV2Preprocessor",
+      "resolution": 512,
+      "image": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "AIO_Preprocessor",
+    "_meta": {
+      "title": "AIO Aux Preprocessor"
+    }
+  },
+  "27": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "29": {
+    "inputs": {
+      "method": "mkl",
+      "strength": 0.9000000000000001,
+      "multithread": true,
+      "image_ref": [
+        "14",
+        1
+      ],
+      "image_target": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "ColorMatch",
+    "_meta": {
+      "title": "Color Match"
+    }
+  },
+  "33": {
+    "inputs": {
+      "unet_name": "麦橘超然majicFlus_v1.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "34": {
+    "inputs": {
+      "lora_name": "麦橘超帅 majicFlus_v1.safetensors",
+      "strength_model": 0.8,
+      "model": [
+        "33",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "35": {
+    "inputs": {
+      "samples": [
+        "36",
+        0
+      ],
+      "mask": [
+        "14",
+        2
+      ]
+    },
+    "class_type": "SetLatentNoiseMask",
+    "_meta": {
+      "title": "设置Latent噪波遮罩"
+    }
+  },
+  "36": {
+    "inputs": {
+      "pixels": [
+        "14",
+        1
+      ],
+      "vae": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "37": {
+    "inputs": {
+      "strength": 1,
+      "model": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "差异扩散"
+    }
+  },
+  "40": {
+    "inputs": {
+      "model": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "CFGZeroStar",
+    "_meta": {
+      "title": "CFGZeroStar"
+    }
+  },
+  "47": {
+    "inputs": {
+      "prompt": "face",
+      "sort_method": "confidence",
+      "bbox_select": "first",
+      "select_index": "",
+      "image": [
+        "8",
+        0
+      ],
+      "florence2_model": [
+        "48",
+        0
+      ]
+    },
+    "class_type": "LayerMask: ObjectDetectorFL2",
+    "_meta": {
+      "title": "图层遮罩：对象检测器 Florence2（高级）"
+    }
+  },
+  "48": {
+    "inputs": {
+      "version": "large-PromptGen-v2.0"
+    },
+    "class_type": "LayerMask: LoadFlorence2Model",
+    "_meta": {
+      "title": "图层遮罩：加载Florence2模型（高级）"
+    }
+  },
+  "51": {
+    "inputs": {
+      "sam2_model": "sam2_hiera_base_plus.safetensors",
+      "precision": "bf16",
+      "bbox_select": "first",
+      "select_index": "0,",
+      "cache_model": false,
+      "detail_method": "VITMatte",
+      "detail_erode": 6,
+      "detail_dilate": 4,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "8",
+        0
+      ],
+      "bboxes": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "LayerMask: SAM2Ultra",
+    "_meta": {
+      "title": "图层遮罩：SAM2 Ultra"
+    }
+  },
+  "52": {
+    "inputs": {
+      "mask": [
+        "51",
+        1
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "60": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true,
+      "anything": [
+        "51",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM V2",
+    "_meta": {
+      "title": "图层工具：清除VRAM V2"
+    }
+  },
+  "64": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "output_folder": "output",
+      "caption_file_extension": ".png",
+      "images": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SaveImageKJ",
+    "_meta": {
+      "title": "保存图像KJ"
+    }
+  }
+}

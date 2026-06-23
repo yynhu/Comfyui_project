@@ -41,6 +41,8 @@ def find_file_matching_pattern(directory, pattern=None, flag=False):
         with os.scandir(directory) as entries:
             for item in entries:
                 try:
+                    if pattern and pattern == r"【.*】\.txt$" and re.match(pattern, item.name):
+                        yield item.path
                     # 如果是文件且非空，则进行后续处理
                     if item.is_file() and item.stat().st_size > 0:
                         # 如果指定了模式并且文件名匹配该模式，则返回文件路径
@@ -86,15 +88,16 @@ def find_folder_matching_pattern(directory_path,current_depth=0, max_depth=1, pa
                         if depth == 0 and first_folder:
                             if not entry.name.startswith(first_folder):
                                 continue
-                        images = list(
-                            find_file_matching_pattern(entry.path, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
-                        text_files = list(
-                            # 排除 clip.txt 文件
-                            find_file_matching_pattern(entry.path, r"(?!clip\.txt$).*\.(txt|TXT)$"))
-                        if text_files:
-                            continue
-                        if images:
-                            matching_directories.append(entry.path)
+                        if depth !=0:
+                            images = list(
+                                find_file_matching_pattern(entry.path, r".*\.(jpg|jpeg|png|JPG|JPEG|PNG)$"))
+                            text_files = list(
+                                # 排除 clip.txt 文件
+                                find_file_matching_pattern(entry.path, r"(?!clip\.txt$).*\.(txt|TXT)$"))
+                            if text_files:
+                                continue
+                            if images:
+                                matching_directories.append(entry.path)
                         if depth < max_depth:
                         # 递归调用以继续遍历子目录
                             scan_directory(entry.path,depth+1)
@@ -136,14 +139,15 @@ def generate_task(folder,pattern,first_folder=None):
         result_pt = find_folder_matching_pattern(folder, pattern=pattern,first_folder=first_folder)
         if not result_pt:
             # logger.warning("【未找符合条件的文件夹】>>>>>>>")
-            return
+            return tasks
         for current_pt in result_pt:
             if not os.path.exists(current_pt):
                 continue
-            if os.path.exists(os.path.join(current_pt, '【未找到clip文本】.txt')):
-                continue
-            # 检查【已完成】标记
-            if os.path.exists(os.path.join(current_pt, '【已完成】.txt')):
+            # if os.path.exists(os.path.join(current_pt, '【未找到clip文本】.txt')):
+            #     continue
+            # 检查是否存在【*****】.txt文件，调用find_file_matching_pattern实现
+            completed_files = list(find_file_matching_pattern(current_pt, r"【.*】\.txt$"))
+            if completed_files:
                 continue
             tasks.append(current_pt)
 

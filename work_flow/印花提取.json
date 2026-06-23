@@ -1,0 +1,908 @@
+{
+  "1": {
+    "inputs": {
+      "conditioning": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "2": {
+    "inputs": {
+      "guidance": 2.5,
+      "conditioning": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "3": {
+    "inputs": {
+      "seed": 873631744980598,
+      "steps": 30,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "2",
+        0
+      ],
+      "negative": [
+        "1",
+        0
+      ],
+      "latent_image": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "4": {
+    "inputs": {
+      "pixels": [
+        "167",
+        0
+      ],
+      "vae": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "5": {
+    "inputs": {
+      "conditioning": [
+        "216",
+        0
+      ],
+      "latent": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "ReferenceLatent",
+    "_meta": {
+      "title": "参考Latent"
+    }
+  },
+  "6": {
+    "inputs": {
+      "width": [
+        "7",
+        0
+      ],
+      "height": [
+        "7",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "空Latent图像（SD3）"
+    }
+  },
+  "7": {
+    "inputs": {
+      "image": [
+        "167",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "8": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "10": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "12": {
+    "inputs": {
+      "strength": 1,
+      "model": [
+        "197",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "差异扩散DifferentialDiffusion"
+    }
+  },
+  "13": {
+    "inputs": {
+      "model": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "CFGZeroStar",
+    "_meta": {
+      "title": "CFGZeroStar"
+    }
+  },
+  "14": {
+    "inputs": {
+      "detail_method": "VITMatte",
+      "detail_erode": 4,
+      "detail_dilate": 6,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "196:229",
+        0
+      ],
+      "birefnet_model": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "LayerMask: BiRefNetUltraV2",
+    "_meta": {
+      "title": "图层遮罩：BiRefNet Ultra V2（高级）"
+    }
+  },
+  "15": {
+    "inputs": {
+      "model": "BiRefNet_HR-general-epoch_130.pth"
+    },
+    "class_type": "LayerMask: LoadBiRefNetModel",
+    "_meta": {
+      "title": "图层遮罩：加载BiRefNet模型（高级）"
+    }
+  },
+  "17": {
+    "inputs": {
+      "grow_top": 0.1,
+      "grow_bottom": 0.1,
+      "grow_left": 0.1,
+      "grow_right": 0.1,
+      "rounded_rect_radius": 0,
+      "anti_aliasing": 0,
+      "image": [
+        "155",
+        0
+      ],
+      "bboxes": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "LayerMask: DrawBBoxMaskV2",
+    "_meta": {
+      "title": "图层遮罩：绘制边界框遮罩 V2（高级）"
+    }
+  },
+  "20": {
+    "inputs": {
+      "version": "large-PromptGen-v2.0"
+    },
+    "class_type": "LayerMask: LoadFlorence2Model",
+    "_meta": {
+      "title": "图层遮罩：加载Florence2模型（高级）"
+    }
+  },
+  "22": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "24": {
+    "inputs": {
+      "prompt": "The most conspicuous logo and text icons on clothes",
+      "sort_method": "confidence",
+      "bbox_select": "first",
+      "select_index": "",
+      "image": [
+        "155",
+        0
+      ],
+      "florence2_model": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "LayerMask: ObjectDetectorFL2",
+    "_meta": {
+      "title": "图层遮罩：对象检测器 Florence2（高级）"
+    }
+  },
+  "34": {
+    "inputs": {
+      "api_key": "24f57dc0f81240cfb364327b276b7e4b.Q0i3AfzGURVTVzfj",
+      "model": "glm-4.1v-thinking-flash",
+      "prompt": "任务：判定序号“0”框内是否为印花\n结果：\n0=框0是印花\n1=框0非印花，但图中其他位置有印花\n2=全图无任何印花\n\n印花=服饰主体外表面且与衣物固定为一体的装饰/标识：\n- 直接印刷：图案/文字/字母/数字/纹样/色块\n- 固定装饰件：补丁/布标/织章/刺绣章/胶章/热转印章（含边框/缝线/贴合痕迹）\n注意：外表面固定的布标/织章/补丁/胶章即算印花\n\n非印花（仅排除可脱离或非衣物本体）：\n- 吊牌/纸牌/手持卡片/悬挂标签（可脱离衣物）\n- 内侧标：织唛/洗水标/成分/尺码\n- 画面叠加水印/促销字\n- 纽扣/拉链等功能件\n- 纯面料纹理/褶皱阴影/反光\n\n流程：\n1) 只看框0：若有清晰图形/文字/徽章且贴合/缝在衣物外表面→{\"result\":0} \n   若明显为吊牌/手持物/悬挂物/内标/叠加字→继续\n   若明显为帽子/背包/手提包等装饰品上的图案或文字→继续\n2) 查全图外表面：有任意印花→{\"result\":1}；否则→{\"result\":2}\n\n兜底：框0里只要看到图形或文字且看似固定在衣物外表面一律判0；仅当全图无任何图形/文字/徽章候选时才判2\n\n输出要求（必须严格遵守）：\n{\"result\":0|1|2}，且不能包含其他内容",
+      "temperature": 0.5,
+      "top_p": 0.7,
+      "max_tokens": 3000,
+      "image1": [
+        "46",
+        1
+      ]
+    },
+    "class_type": "GLMALLNode",
+    "_meta": {
+      "title": "GLM-model-calling"
+    }
+  },
+  "37": {
+    "inputs": {
+      "python_expression": "a.strip().split(\"\\n\")[-1]",
+      "print_to_console": "False",
+      "a": [
+        "215",
+        0
+      ],
+      "b": " World",
+      "c": "!"
+    },
+    "class_type": "Evaluate Strings",
+    "_meta": {
+      "title": "字符串运算"
+    }
+  },
+  "39": {
+    "inputs": {
+      "json_string": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "JsonParseNode",
+    "_meta": {
+      "title": "Pyobjects/JSON -> PyObject"
+    }
+  },
+  "40": {
+    "inputs": {
+      "key": "result",
+      "py_dict": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "DictGetNode",
+    "_meta": {
+      "title": "Pyobjects/Dict Get"
+    }
+  },
+  "42": {
+    "inputs": {
+      "fill_background": true,
+      "background_color": "#ffffff",
+      "RGBA_image": [
+        "14",
+        0
+      ],
+      "mask": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: ImageRemoveAlpha",
+    "_meta": {
+      "title": "图层工具：图像移除Alpha"
+    }
+  },
+  "46": {
+    "inputs": {
+      "prompt": "The most conspicuous logo,text print,full graphic on the garment",
+      "sort_method": "confidence",
+      "bbox_select": "first",
+      "select_index": "",
+      "image": [
+        "194:193",
+        0
+      ],
+      "florence2_model": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "LayerMask: ObjectDetectorFL2",
+    "_meta": {
+      "title": "图层遮罩：对象检测器 Florence2（高级）"
+    }
+  },
+  "61": {
+    "inputs": {
+      "grow_top": 0.1,
+      "grow_bottom": 0.1,
+      "grow_left": 0.1,
+      "grow_right": 0.1,
+      "rounded_rect_radius": 0,
+      "anti_aliasing": 0,
+      "image": [
+        "194:193",
+        0
+      ],
+      "bboxes": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "LayerMask: DrawBBoxMaskV2",
+    "_meta": {
+      "title": "图层遮罩：绘制边界框遮罩 V2（高级）"
+    }
+  },
+  "75": {
+    "inputs": {
+      "value": "a/b",
+      "a": [
+        "76",
+        0
+      ],
+      "b": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "76": {
+    "inputs": {
+      "value": 1
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "77": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "86": {
+    "inputs": {
+      "boolean": [
+        "101",
+        0
+      ],
+      "on_true": [
+        "75",
+        0
+      ],
+      "on_false": [
+        "95",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "88": {
+    "inputs": {
+      "value": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "94": {
+    "inputs": {
+      "value": 2
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "95": {
+    "inputs": {
+      "boolean": [
+        "102",
+        0
+      ],
+      "on_true": [
+        "150",
+        1
+      ],
+      "on_false": [
+        "152",
+        1
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "98": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "101": {
+    "inputs": {
+      "comparison": "a == b",
+      "a": [
+        "88",
+        0
+      ],
+      "b": [
+        "94",
+        0
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "102": {
+    "inputs": {
+      "comparison": "a == b",
+      "a": [
+        "88",
+        0
+      ],
+      "b": [
+        "98",
+        0
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "118": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": false,
+      "anything": [
+        "167",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM",
+    "_meta": {
+      "title": "图层工具：清除VRAM"
+    }
+  },
+  "136": {
+    "inputs": {
+      "model_path": "svdq-fp4_r32-flux.1-kontext-dev.safetensors",
+      "cache_threshold": 0.12,
+      "attention": "nunchaku-fp16",
+      "cpu_offload": "auto",
+      "device_id": 0,
+      "data_type": "bfloat16",
+      "i2f_mode": "enabled"
+    },
+    "class_type": "NunchakuFluxDiTLoader",
+    "_meta": {
+      "title": "双截棍FluxDiT加载器"
+    }
+  },
+  "137": {
+    "inputs": {
+      "lora_name": "clothesphoto\\my_first_lora_v1\\my_first_lora_v1.safetensors",
+      "lora_strength": 1.2,
+      "model": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "NunchakuFluxLoraLoader",
+    "_meta": {
+      "title": "双截棍FluxLora加载器"
+    }
+  },
+  "141": {
+    "inputs": {
+      "image": [
+        "42",
+        0
+      ],
+      "mask": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "ImageCropByMask",
+    "_meta": {
+      "title": "按遮罩裁剪"
+    }
+  },
+  "150": {
+    "inputs": {
+      "crop_size_mult": 1,
+      "bbox_smooth_alpha": 1,
+      "original_images": [
+        "194:193",
+        0
+      ],
+      "masks": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "BatchCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪"
+    }
+  },
+  "152": {
+    "inputs": {
+      "crop_size_mult": 1,
+      "bbox_smooth_alpha": 1,
+      "original_images": [
+        "155",
+        0
+      ],
+      "masks": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "BatchCropFromMask",
+    "_meta": {
+      "title": "遮罩裁剪"
+    }
+  },
+  "155": {
+    "inputs": {
+      "fill": "neutral",
+      "falloff": 0,
+      "image": [
+        "194:193",
+        0
+      ],
+      "mask": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "INPAINT_MaskedFill",
+    "_meta": {
+      "title": "遮罩填充"
+    }
+  },
+  "167": {
+    "inputs": {
+      "method": "bicubic",
+      "image": [
+        "86",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: FluxKontextImageScale",
+    "_meta": {
+      "title": "LayerUtility: Flux Kontext Image Scale"
+    }
+  },
+  "197": {
+    "inputs": {
+      "shift": 3.09,
+      "model": [
+        "137",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "采样算法（AuraFlow）"
+    }
+  },
+  "200": {
+    "inputs": {
+      "text_0": "{\"result\":0}",
+      "text": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "215": {
+    "inputs": {
+      "text_0": "{\"result\":0}",
+      "text": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "216": {
+    "inputs": {
+      "text": "Extract clear and printable flat color contrast vector patterns from the input image.All text elements should remain clear, readable, undistorted, and correctly shaped and color.\nPreserve the brush strokes and texture of the pattern itself\nDo not retain photographic flaws, fabric base colors, lighting effects, and color deviations caused by physical clothing or environmental factors.\nAdjust the image to a design level visual effect while preserving the original color matching and color hierarchy of the print\nRemove all physical objects covering the pattern, such as straps, accessories, jewelry, and other external objects.\nIf such items obstruct the pattern, the underlying pattern that is obstructed needs to be restored to its unobstructed and complete state.\nFabric wrinkles, shadows, gradient lighting, three-dimensional layering, or perspective distortion are not allowed in the image",
+      "clip": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "233": {
+    "inputs": {
+      "image": "similar_435611908307800.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "234": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "output_folder": "output",
+      "caption_file_extension": ".png",
+      "images": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "SaveImageKJ",
+    "_meta": {
+      "title": "保存图像KJ"
+    }
+  },
+  "196:227": {
+    "inputs": {
+      "value": 1536
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "196:228": {
+    "inputs": {
+      "value": 1536
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "196:229": {
+    "inputs": {
+      "boolean": [
+        "196:230",
+        0
+      ],
+      "on_true": [
+        "196:231",
+        0
+      ],
+      "on_false": [
+        "233",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "196:230": {
+    "inputs": {
+      "comparison": "a > b",
+      "a": [
+        "196:232",
+        0
+      ],
+      "b": [
+        "196:227",
+        0
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "196:231": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "bicubic",
+      "round_to_multiple": "8",
+      "scale_to_side": "longest",
+      "scale_to_length": [
+        "196:228",
+        0
+      ],
+      "background_color": "#000000",
+      "image": [
+        "233",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "图层工具：按宽高比缩放 V2"
+    }
+  },
+  "196:232": {
+    "inputs": {
+      "side": "Longest",
+      "image": [
+        "233",
+        0
+      ]
+    },
+    "class_type": "easy imageSizeBySide",
+    "_meta": {
+      "title": "图像尺寸（边）"
+    }
+  },
+  "194:225": {
+    "inputs": {
+      "value": 500
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "194:226": {
+    "inputs": {
+      "value": 500
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "194:193": {
+    "inputs": {
+      "boolean": [
+        "194:191",
+        0
+      ],
+      "on_true": [
+        "194:189",
+        0
+      ],
+      "on_false": [
+        "141",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "194:191": {
+    "inputs": {
+      "comparison": "a < b",
+      "a": [
+        "194:190",
+        0
+      ],
+      "b": [
+        "194:225",
+        0
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "194:189": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "bicubic",
+      "round_to_multiple": "8",
+      "scale_to_side": "shortest",
+      "scale_to_length": [
+        "194:226",
+        0
+      ],
+      "background_color": "#000000",
+      "image": [
+        "141",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "图层工具：按宽高比缩放 V2"
+    }
+  },
+  "194:190": {
+    "inputs": {
+      "side": "Shortest",
+      "image": [
+        "141",
+        0
+      ]
+    },
+    "class_type": "easy imageSizeBySide",
+    "_meta": {
+      "title": "图像尺寸（边）"
+    }
+  }
+}
